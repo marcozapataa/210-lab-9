@@ -40,6 +40,28 @@ int main()
     }
     cout << endl;
 
+    // Display the address, front and back elements from the data file
+    cout << "5. Address: " << skyfall.data() << endl;
+    cout << "6. Front: " << skyfall.front() << endl;
+    cout << "7. Back: " << skyfall.back() << endl;
+
+    // Find an element
+    int target = 51;
+    array<int, SIZE>::iterator it;
+    it = find(skyfall.begin(), skyfall.end(), target);
+    cout << "8. Value: " << target;
+    if (it != skyfall.end())
+        cout << " found in position " << it - skyfall.begin() << endl;
+    else
+        cout << " was not found.\n";
+    cout << "  Value: " << *it << endl;
+
+    // Find min and max elements
+    cout << "9. Max element is " << *max_element(skyfall.begin(), skyfall.end())
+        << " and Min element is " << *min_element(skyfall.begin(), skyfall.end()) << endl;
+    // Find the sum of the array
+    cout << "10. The sum of the array is: " << accumulate(skyfall.begin(), skyfall.end(), 0) << endl;
+
 
     return 0;
 }
