@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <numeric>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -61,6 +62,59 @@ int main()
         << " and Min element is " << *min_element(skyfall.begin(), skyfall.end()) << endl;
     // Find the sum of the array
     cout << "10. The sum of the array is: " << accumulate(skyfall.begin(), skyfall.end(), 0) << endl;
+
+    // Part 2 use std::vector
+    vector<int> skyfallVector;
+
+    // Display vector size
+    cout << "" << endl;
+    cout << "1. Vector initial size: " << skyfallVector.size() << endl;
+
+    // Read from external data file with 30 elements
+    ifstream inputFileVec("data.txt");
+
+    // Read the data into the STD::vector
+    int tempValue;
+    while (inputFileVec >> tempValue)
+    {
+        skyfallVector.push_back(tempValue);
+    }
+    inputFileVec.close();
+
+    // Display the vector has loaded the elements from the file
+    cout << "2. Loaded: " << skyfallVector.size() << " elements into skyfallVector." << endl;
+
+    // Display the 15th number using the .at() function
+    cout << "3. The 15th number in the file is " << skyfallVector.at(14) << endl;
+
+    // Display the elements in the data file
+    cout << "4. Elements:";
+    for (int number : skyfallVector)
+    {
+        cout << number << " ";
+    }
+    cout << endl;
+
+    // Display the address, front and back elements from the data file
+    cout << "5. Address: " << skyfallVector.data() << endl;
+    cout << "6. Front: " << skyfallVector.front() << endl;
+    cout << "7. Back: " << skyfallVector.back() << endl;
+
+    // Find an element using vector iterator
+    vector<int>::iterator itVec;
+    itVec = find(skyfallVector.begin(), skyfallVector.end(), target);
+    cout << "8. Value: " << target;
+    if (itVec != skyfallVector.end())
+        cout << " found in position " << itVec - skyfallVector.begin() << endl;
+    else
+        cout << " was not found.\n";
+    cout << "  Value: " << *itVec << endl;
+
+    // Find min and max elements
+    cout << "9. Max element is " << *max_element(skyfallVector.begin(), skyfallVector.end())
+        << " and Min element is " << *min_element(skyfallVector.begin(), skyfallVector.end()) << endl;
+    // Find the sum of the vector
+    cout << "10. The sum of the vector is: " << accumulate(skyfallVector.begin(), skyfallVector.end(), 0) << endl;
 
 
     return 0;
